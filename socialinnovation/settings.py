@@ -133,15 +133,15 @@ MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "media")
 JAZZMIN_SETTINGS = {
 
     # title of the window
-    "site_title": "Mapplate Admin",
+    "site_title": "World Social Innovation Forum",
     # Title on the brand, and the login screen (19 chars max)
-    "site_header": "Mapplate",
+    "site_header": "WSIF",
     # square logo to use for your site, must be present in static files, used for favicon and brand on top left
     # "site_logo": "polls/img/logo.png",
     # Welcome text on the login screen
-    "welcome_sign": "Welcome to Mapplate",
+    "welcome_sign": "Welcome to WSIF",
     # Copyright on the footer
-    "copyright": "bdtask Ltd",
+    "copyright": "Palash Khan",
     # The model admin to search from the search bar, search bar omitted if excluded
     "search_model": "auth.User",
     # Field name on user model that contains avatar image

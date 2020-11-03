@@ -7,7 +7,7 @@ class Home(models.Model):
     logo = models.ImageField(upload_to='logo', blank=True)
     company_name = models.CharField(max_length=50, blank=True)
     slider_headline = models.CharField(max_length=150, blank=True)
-    slider_small_headline = models.CharField(max_length=150, blank=True)
+    slider_small_headline = models.TextField(max_length=800, blank=True)
     slider_images = models.ImageField(upload_to='slider', blank=True)
     is_published = models.BooleanField(default=True)
     date_time = models.DateTimeField(default=now)
@@ -15,7 +15,9 @@ class Home(models.Model):
 
     def __str__(self):
         return self.company_name
-
+    class Meta:
+        verbose_name = 'Home'
+        verbose_name_plural = 'Home'
 
 class Process(models.Model):
     icon_one = models.CharField(max_length=150, blank=True)
@@ -41,6 +43,10 @@ class Process(models.Model):
     def __str__(self):
         return self.process_title_one
 
+    class Meta:
+        verbose_name = 'Process'
+        verbose_name_plural = 'Process'
+
 
 class About(models.Model):
     about_title = models.CharField(max_length=150, blank=True)
@@ -53,6 +59,9 @@ class About(models.Model):
 
     def __str__(self):
         return self.about_title
+    class Meta:
+        verbose_name = 'About'
+        verbose_name_plural = 'About'
 
 class Achievement(models.Model):
     achieve_title = models.CharField(max_length=150, blank=True)
@@ -65,8 +74,17 @@ class Achievement(models.Model):
     def __str__(self):
         return self.achieve_title
 
+    class Meta:
+        verbose_name = 'Achievement'
+        verbose_name_plural = 'Achievement'
+
 
 class Projects(models.Model):
+    TYPE_SELECT = (
+        ('col-md-5 img js-fullheight', 'Left'),
+        ('col-md-5 order-md-last img js-fullheight', 'Right'),
+    )
+    position = models.CharField(max_length=100, choices=TYPE_SELECT)
     projects_title = models.CharField(max_length=250, blank=True)
     projects_details = models.CharField(max_length=1000, blank=True)
     projects_images = models.ImageField(upload_to='projects')
@@ -80,6 +98,10 @@ class Projects(models.Model):
     def __str__(self):
         return self.projects_title
 
+    class Meta:
+        verbose_name = 'Projects'
+        verbose_name_plural = 'Projects'
+
 
 class Blog(models.Model):
     blog_headline = models.CharField(max_length=300, blank=True)
@@ -92,6 +114,9 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.blog_headline
+    class Meta:
+        verbose_name = 'Blog'
+        verbose_name_plural = 'Blog'
 
 
 class Team(models.Model):
@@ -101,6 +126,7 @@ class Team(models.Model):
     images = models.ImageField(upload_to='team')
     linkedin = models.CharField(max_length=300, blank=True)
     facebook = models.CharField(max_length=300, blank=True)
+    twitter = models.CharField(max_length=300, blank=True)
     is_published = models.BooleanField(default=True)
 
     date_time = models.DateTimeField(default=now)
@@ -109,11 +135,15 @@ class Team(models.Model):
     def __str__(self):
         return self.first_name
 
+    class Meta:
+        verbose_name = 'Team'
+        verbose_name_plural = 'Team'
+
 
 class Services(models.Model):
     services_title = models.CharField(max_length=150, blank=True)
     services_details = models.TextField(max_length=300, blank=True)
-    logo = models.ImageField(upload_to='logo')
+    icon = models.CharField(max_length=200, blank=True)
 
     is_published = models.BooleanField(default=True)
     date_time = models.DateTimeField(default=now)
@@ -123,13 +153,45 @@ class Services(models.Model):
     def __str__(self):
         return self.services_title
 
+    class Meta:
+        verbose_name = 'Services'
+        verbose_name_plural = 'Services'
+
 
 class ContactUs(models.Model):
     name = models.CharField(max_length=50, blank=True)
-    email = models.EmailField(max_length=35, blank=True)
-    subject = models.EmailField(max_length=200, blank=True)
-    message = models.EmailField(max_length=1000, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    email = models.CharField(max_length=30, blank=True)
+    phone = models.CharField(max_length= 25, blank= True)
+    address = models.CharField(max_length= 100, blank= True)
+    message = models.TextField(max_length= 1000, blank= True)
+    # created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+    class Meta:
+        verbose_name = 'Contact Us'
+        verbose_name_plural = 'Contact Us'
+
+class StaticContent(models.Model):
+    about_page_image = models.ImageField(upload_to='about')
+    about_page_headline = models.CharField(max_length=500, blank=True)
+    team_page_image = models.ImageField(upload_to='team')
+    team_page_headline = models.CharField(max_length=500, blank=True)
+    service_page_image = models.ImageField(upload_to='service')
+    service_page_headline = models.CharField(max_length=500, blank=True)
+    project_page_image = models.ImageField(upload_to='project')
+    project_page_headline = models.CharField(max_length=500, blank=True)
+    blog_page_image = models.ImageField(upload_to='blog')
+    blog_page_headline = models.CharField(max_length=500, blank=True)
+    contact_page_image = models.ImageField(upload_to='contact')
+    contact_page_headline = models.CharField(max_length=500, blank=True)
+
+    is_published = models.BooleanField(default=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.about_page_headline
+
+    class Meta:
+        verbose_name = 'Static Content'
+        verbose_name_plural = 'Static Content'

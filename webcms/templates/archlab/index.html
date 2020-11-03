@@ -2,28 +2,7 @@
 {% load static %}
 {% block content %}
 
-<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-<div class="container-fluid">
-	{% for home in home_cms %}
-  <a class="navbar-brand" href="index.html">{{home.company_name}}</a>
-	{% endfor %}
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	<span class="oi oi-menu"></span> Menu
-  </button>
 
-  <div class="collapse navbar-collapse" id="ftco-nav">
-	<ul class="navbar-nav ml-auto">
-	  <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	  <li class="nav-item"><a href="about.html" class="nav-link">About</a></li>
-	  <li class="nav-item"><a href="team.html" class="nav-link">Team</a></li>
-	  <li class="nav-item"><a href="services.html" class="nav-link">Services</a></li>
-	  <li class="nav-item"><a href="project.html" class="nav-link">Project</a></li>
-	  <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-	  <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-	</ul>
-  </div>
-</div>
-</nav>
 <!-- END nav -->
 {% for home in home_cms %}
 <section class="hero-wrap" style="background-image: url('{{ home.slider_images.url }}'); height:533px;" data-stellar-background-ratio="0.3">
@@ -97,26 +76,24 @@
 			<h2 class="mb-4">{{about_cms.about_title}}</h2>
              {{ about_cms.about_details | safe }}
 		 	{% endfor %}
-		  </div>
-				</div>
 			</div>
 		</div>
-	</section>
+</section>
 
-	<section class="ftco-counter img" id="section-counter">
+<section class="ftco-counter img" id="section-counter">
 	<div class="container">
 		<div class="row pt-md-5">
 			{% for achieve_cms in achieve %}
-	  <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
-		<div class="block-18 py-md-5 mb-md-4">
-		  <div class="text text-border d-flex align-items-center">
+		  <div class="col-md-6 col-lg-3 justify-content-center counter-wrap ftco-animate">
+			<div class="block-18 py-md-5 mb-md-4">
+			  <div class="text text-border d-flex align-items-center">
 
-			<strong class="number" data-number="{{achieve_cms.achieve_number}}">0</strong>
-			  {{achieve_cms.achieve_title | safe}}
+				<strong class="number" data-number="{{achieve_cms.achieve_number}}">0</strong>
+				  {{achieve_cms.achieve_title | safe}}
 		  </div>
 		</div>
 	  </div>
-			{% endfor %}
+	{% endfor %}
 	</div>
 	</div>
 </section>
@@ -124,29 +101,34 @@
 <section class="ftco-section ftco-portfolio">
 	<div class="row justify-content-center no-gutters">
 	<div class="col-md-12 heading-section text-center ftco-animate mb-5">
-		<span class="subheading">Projects</span>
-	  <h2 class="mb-2">Our Unique Latest Projects</h2>
+<!--		<span class="subheading">Projects</span>-->
+		{% for project in projects %}
+	  <h2 class="mb-2">{{ project.projects_headline }}</h2>
+		{% endfor %}
 	</div>
   </div>
 
 	<div class="container">
 		<div class="row no-gutters">
+
+			{% for project in projects %}
 			<div class="col-md-12 portfolio-wrap">
 				<div class="row no-gutters align-items-center">
-					<div class="col-md-5 img js-fullheight" style="background-image: url(images/work-1.jpg);">
+<!--					<div class="col-md-5 img js-fullheight" style="background-image: url({{project.projects_images.url}});">-->
+					<div class="{{project.position}}" style="background-image: url({{project.projects_images.url}});">
 
 					</div>
 					<div class="col-md-7">
 						<div class="text pt-5 pl-0 pl-lg-5 pl-md-4 ftco-animate">
+<!--						<div class="{{project.position}}">-->
 							<div class="px-4 px-lg-4">
 								<div class="desc">
-									<div class="top">
-										<span class="subheading">Exterior {12/07/2020}</span>
-										<h2 class="mb-4"><a href="work.html">Geometric Building</a></h2>
-									</div>
+<!--									<div class="top">-->
+										<h2 class="mb-4"><a href="work.html">{{project.projects_title}}</a></h2>
+<!--									</div>-->
 									<div class="absolute">
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-										<p><a href="#" class="custom-btn">View Portfolio</a></p>
+										<p>{{project.projects_details}}</p>
+<!--										<p><a href="#" class="custom-btn">View Portfolio</a></p>-->
 									</div>
 								</div>
 							</div>
@@ -154,334 +136,36 @@
 					</div>
 				</div>
 			</div>
+			{% endfor %}
 
-			<div class="col-md-12 portfolio-wrap">
-				<div class="row no-gutters align-items-center">
-					<div class="col-md-5 order-md-last img js-fullheight" style="background-image: url(images/work-2.jpg);">
-
-					</div>
-					<div class="col-md-7">
-						<div class="text pt-5 pr-md-5 ftco-animate">
-							<div class="px-4 px-lg-4">
-								<div class="desc text-md-right">
-									<div class="top">
-										<span class="subheading">Furniture {12/07/2020}</span>
-										<h2 class="mb-4"><a href="work.html">Twin Office</a></h2>
-									</div>
-									<div class="absolute">
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-										<p><a href="#" class="custom-btn">View Portfolio</a></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-12 portfolio-wrap">
-				<div class="row no-gutters align-items-center">
-					<div class="col-md-5 img js-fullheight" style="background-image: url(images/work-3.jpg);">
-
-					</div>
-					<div class="col-md-7">
-						<div class="text pt-5 pl-md-5 pl-md-4 ftco-animate">
-							<div class="px-4 px-lg-4">
-								<div class="desc">
-									<div class="top">
-										<span class="subheading">Building {12/07/2020}</span>
-										<h2 class="mb-4"><a href="work.html">Cultural Complex Centre</a></h2>
-									</div>
-									<div class="absolute">
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-										<p><a href="#" class="custom-btn">View Portfolio</a></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-12 portfolio-wrap">
-				<div class="row no-gutters align-items-center">
-					<div class="col-md-5 order-md-last img js-fullheight" style="background-image: url(images/work-4.jpg);">
-
-					</div>
-					<div class="col-md-7">
-						<div class="text pt-5 pr-md-5 ftco-animate">
-							<div class="px-4 px-lg-4">
-								<div class="desc text-md-right">
-									<div class="top">
-										<span class="subheading">Furniture {12/07/2020}</span>
-										<h2 class="mb-4"><a href="work.html">Twin Office</a></h2>
-									</div>
-									<div class="absolute">
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-										<p><a href="#" class="custom-btn">View Portfolio</a></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-md-12 portfolio-wrap">
-				<div class="row no-gutters align-items-center">
-					<div class="col-md-5 img js-fullheight" style="background-image: url(images/work-5.jpg);">
-
-					</div>
-					<div class="col-md-7">
-						<div class="text pt-5 pl-md-5 pl-md-4 ftco-animate">
-							<div class="px-4 px-lg-4">
-								<div class="desc">
-									<div class="top">
-										<span class="subheading">Building {12/07/2020}</span>
-										<h2 class="mb-4"><a href="work.html">Cultural Complex Centre</a></h2>
-									</div>
-									<div class="absolute">
-										<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
-										<p><a href="#" class="custom-btn">View Portfolio</a></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
-</section>
-
-<section class="ftco-section testimony-section bg-light">
-  <div class="container">
-	<div class="row justify-content-center mb-5">
-	  <div class="col-md-7 text-center heading-section ftco-animate">
-		<span class="subheading">Testimonial</span>
-		<h2 class="mb-3">Happy Clients</h2>
-	  </div>
-	</div>
-	<div class="row ftco-animate">
-	  <div class="col-md-12">
-		<div class="carousel-testimony owl-carousel">
-		  <div class="item">
-			<div class="testimony-wrap py-4">
-			  <div class="text">
-				<span class="fa fa-quote-left"></span>
-				<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-				<div class="d-flex align-items-center">
-					<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-					<div class="pl-3">
-						<p class="name">Roger Scott</p>
-						<span class="position">Marketing Manager</span>
-					  </div>
-				  </div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="item">
-			<div class="testimony-wrap py-4">
-			  <div class="text">
-				<span class="fa fa-quote-left"></span>
-				<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-				<div class="d-flex align-items-center">
-					<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-					<div class="pl-3">
-						<p class="name">Roger Scott</p>
-						<span class="position">Marketing Manager</span>
-					  </div>
-				  </div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="item">
-			<div class="testimony-wrap py-4">
-			  <div class="text">
-				<span class="fa fa-quote-left"></span>
-				<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-				<div class="d-flex align-items-center">
-					<div class="user-img" style="background-image: url(images/person_3.jpg)"></div>
-					<div class="pl-3">
-						<p class="name">Roger Scott</p>
-						<span class="position">Marketing Manager</span>
-					  </div>
-				  </div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="item">
-			<div class="testimony-wrap py-4">
-			  <div class="text">
-				<span class="fa fa-quote-left"></span>
-				<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-				<div class="d-flex align-items-center">
-					<div class="user-img" style="background-image: url(images/person_1.jpg)"></div>
-					<div class="pl-3">
-						<p class="name">Roger Scott</p>
-						<span class="position">Marketing Manager</span>
-					  </div>
-				  </div>
-			  </div>
-			</div>
-		  </div>
-		  <div class="item">
-			<div class="testimony-wrap py-4">
-			  <div class="text">
-				<span class="fa fa-quote-left"></span>
-				<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-				<div class="d-flex align-items-center">
-					<div class="user-img" style="background-image: url(images/person_2.jpg)"></div>
-					<div class="pl-3">
-						<p class="name">Roger Scott</p>
-						<span class="position">Marketing Manager</span>
-					  </div>
-				  </div>
-			  </div>
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</div>
-  </div>
 </section>
 
 <section class="ftco-section">
   <div class="container">
 	<div class="row justify-content-center mb-5">
 	  <div class="col-md-7 heading-section text-center ftco-animate">
-		<span class="subheading">Pricing</span>
-		<h2>Price &amp; Plans</h2>
-	  </div>
-	</div>
-	<div class="row">
-			<div class="col-md-4 ftco-animate">
-		  <div class="block-7">
-			<div class="img" style="background-image: url(images/work-1.jpg);"></div>
-			<div class="p-4">
-				<ul class="pricing-text mb-2">
-				  <li><span class="fa fa-check-circle mr-2"></span>Planning Solution</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>10 Construction Drawings</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>Selection Materials</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>Unlimited Revision</li>
-				</ul>
-			  </div>
-			  <div class="d-lg-flex align-items-center w-100 bg-light py-2 px-4">
-							<span class="price"><sup>$</sup> <span class="number">78</span> <sub>/mos</sub></span>
-							<p class="w-100 mb-0">
-					<a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
-				  </p>
-				</div>
-		</div>
-		</div>
-		<div class="col-md-4 ftco-animate">
-		  <div class="block-7">
-			<div class="img" style="background-image: url(images/work-2.jpg);"></div>
-			<div class="p-4">
-				<ul class="pricing-text mb-2">
-				  <li><span class="fa fa-check-circle mr-2"></span>Planning Solution</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>10 Construction Drawings</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>Selection Materials</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>Unlimited Revision</li>
-				</ul>
-			  </div>
-			  <div class="d-lg-flex align-items-center w-100 bg-light py-2 px-4">
-							<span class="price"><sup>$</sup> <span class="number">88</span> <sub>/mos</sub></span>
-							<p class="w-100 mb-0">
-					<a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
-				  </p>
-				</div>
-		</div>
-		</div>
-		<div class="col-md-4 ftco-animate">
-		  <div class="block-7">
-			<div class="img" style="background-image: url(images/work-3.jpg);"></div>
-			<div class="p-4">
-				<ul class="pricing-text mb-2">
-				  <li><span class="fa fa-check-circle mr-2"></span>Planning Solution</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>10 Construction Drawings</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>Selection Materials</li>
-				  <li><span class="fa fa-check-circle mr-2"></span>Unlimited Revision</li>
-				</ul>
-			  </div>
-			  <div class="d-lg-flex align-items-center w-100 bg-light py-2 px-4">
-							<span class="price"><sup>$</sup> <span class="number">98</span> <sub>/mos</sub></span>
-							<p class="w-100 mb-0">
-					<a href="#" class="btn btn-primary d-block px-2 py-3">Get Started</a>
-				  </p>
-				</div>
-		  </div>
-		</div>
-	  </div>
-  </div>
-</section>
-
-<section class="ftco-section">
-  <div class="container">
-	<div class="row justify-content-center mb-5">
-	  <div class="col-md-7 heading-section text-center ftco-animate">
-		<span class="subheading">Blog</span>
+<!--		<span class="subheading">Blog</span>-->
 		<h2>Recent Blog</h2>
 	  </div>
 	</div>
 	<div class="row d-flex">
+		{% for blog_cms in blog %}
 	  <div class="col-md-3 d-flex ftco-animate">
 		<div class="blog-entry justify-content-end">
 		  <div class="text">
-			<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_1.jpg');">
+			<a href="blog-single.html" class="block-20 img" style="background-image: url({{blog_cms.blog_images.url}});">
 			  </a>
 			  <div class="meta mb-3">
-			  <div><a href="#">June 01, 2020</a></div>
-			  <div><a href="#">Admin</a></div>
-			  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
+			  <div><a href="#">{{blog_cms.date_time}}</a></div>
 			</div>
-			  <h3 class="heading"><a href="#">Make Peace With Your Broken Pieces</a></h3>
-		  </div>
-		</div>
-	  </div>
-	  <div class="col-md-3 d-flex ftco-animate">
-		<div class="blog-entry justify-content-end">
-		  <div class="text">
-			<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_2.jpg');">
-			  </a>
-			  <div class="meta mb-3">
-			  <div><a href="#">June 01, 2020</a></div>
-			  <div><a href="#">Admin</a></div>
-			  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-			</div>
-			  <h3 class="heading"><a href="#">Make Peace With Your Broken Pieces</a></h3>
-		  </div>
-		</div>
-	  </div>
-	  <div class="col-md-3 d-flex ftco-animate">
-		<div class="blog-entry justify-content-end">
-		  <div class="text">
-			<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_3.jpg');">
-			  </a>
-			  <div class="meta mb-3">
-			  <div><a href="#">June 01, 2020</a></div>
-			  <div><a href="#">Admin</a></div>
-			  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-			</div>
-			  <h3 class="heading"><a href="#">Make Peace With Your Broken Pieces</a></h3>
-		  </div>
-		</div>
-	  </div>
-	  <div class="col-md-3 d-flex ftco-animate">
-		<div class="blog-entry justify-content-end">
-		  <div class="text">
-			<a href="blog-single.html" class="block-20 img" style="background-image: url('images/image_4.jpg');">
-			  </a>
-			  <div class="meta mb-3">
-			  <div><a href="#">June 01, 2020</a></div>
-			  <div><a href="#">Admin</a></div>
-			  <div><a href="#" class="meta-chat"><span class="fa fa-comment"></span> 3</a></div>
-			</div>
-			  <h3 class="heading"><a href="#">Make Peace With Your Broken Pieces</a></h3>
+			  <h3 class="heading"><a href="#">{{blog_cms.blog_headline}}</a></h3>
 		  </div>
 		</div>
 	  </div>
 	</div>
+	  {% endfor %}
   </div>
 </section>
 
