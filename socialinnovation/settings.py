@@ -82,6 +82,20 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME':"postgres",
+#         'USER': "mapplaterds",
+#         'PASSWORD':"kK5!fB44cs32" ,
+#         'HOST': 'localhost',
+#         'PORT': 5432,
+#     }
+# }
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
@@ -170,10 +184,17 @@ JAZZMIN_SETTINGS = {
         # "auth.user": "fas fa-user",
         # "auth.Group": "fas fa-users",
         # "admin.LogEntry": "fas fa-file",
-        "foods.FoodList": "fas fa-pizza-slice",
-        "foods.Variants": "fas fa-cheese",
-        "customers.Customers": "fa fa-address-book",
-        "restaurants.Restaurants":"fas fa-bread-slice"
+        "webcms.ContactUs": "fa fa-at",
+        "webcms.Achievement": "fa fa-trophy",
+        "webcms.Blog": "fab fa-blogger-b",
+        "webcms.Home": "fa fa-home",
+        "webcms.Process": "fa fa-spinner",
+        "webcms.Projects": "fas fa-project-diagram",
+        "webcms.Services": "fab fa-accessible-icon",
+        "webcms.Team": "fas fa-child",
+        "webcms.StaticContent": "fa fa-adjust",
+        "webcms.About": "fa fa-file",
+
         # "polls.Vote": "fas fa-vote-yea",
         # "polls.Campaign": "fas fa-ad",
         # "polls.Cheese": "fas fa-cheese",

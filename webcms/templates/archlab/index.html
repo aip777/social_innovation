@@ -139,33 +139,80 @@
 			{% endfor %}
 
 		</div>
+		<nav aria-label="Page navigation example">
+            {% if projects.has_other_pages %}
+          <ul class="pagination justify-content-center">
+              {% if projects.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?projects={{ projects.previous_page_number }}" style="color:#191e23;" tabindex="-1">Previous</a>
+
+            </li>
+              {% endif %}
+              {% for i in projects.paginator.page_range %}
+                {% if projects.number == i %}
+            <li class="page-item"><a class="page-link" style="color:#191e23;" href="?projects={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+              {% if projects.has_next %}
+            <li class="page-item">
+              <a class="page-link" style="color:#191e23;" href="?projects={{ projects.next_page_number }}">Next</a>
+            </li>
+              {% endif %}
+              {% endif %}
+          </ul>
+        </nav>
 	</div>
 </section>
 
+
 <section class="ftco-section">
   <div class="container">
-	<div class="row justify-content-center mb-5">
+	  <div class="row justify-content-center mb-5">
 	  <div class="col-md-7 heading-section text-center ftco-animate">
 <!--		<span class="subheading">Blog</span>-->
 		<h2>Recent Blog</h2>
 	  </div>
 	</div>
-	<div class="row d-flex">
-		{% for blog_cms in blog %}
-	  <div class="col-md-3 d-flex ftco-animate">
-		<div class="blog-entry justify-content-end">
-		  <div class="text">
-			<a href="blog-single.html" class="block-20 img" style="background-image: url({{blog_cms.blog_images.url}});">
-			  </a>
-			  <div class="meta mb-3">
-			  <div><a href="#">{{blog_cms.date_time}}</a></div>
-			</div>
-			  <h3 class="heading"><a href="#">{{blog_cms.blog_headline}}</a></h3>
-		  </div>
-		</div>
-	  </div>
-	</div>
-	  {% endfor %}
+    <div class="row d-flex">
+    {% for blog_cms in blog %}
+              <div class="col-md-3 d-flex ftco-animate">
+                <div class="blog-entry justify-content-end">
+                  <div class="text">
+                    <a href="blog-single.html" class="block-20 img" style="background-image: url({{blog_cms.blog_images.url}});">
+                      </a>
+                      <div class="meta mb-3">
+                      <div><a href="#">{{blog_cms.date_time}}</a></div>
+                    </div>
+                      <h3 class="heading"><a href="{% url 'listing' blog_cms.id %}">{{blog_cms.blog_headline_one}}</a></h3>
+                  </div>
+                </div>
+              </div>
+{% endfor %}
+        </div>
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+            {% if blog.has_other_pages %}
+          <ul class="pagination justify-content-center">
+              {% if blog.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?blog={{ blog.previous_page_number }}" style="color:#191e23;" tabindex="-1">Previous</a>
+
+            </li>
+              {% endif %}
+              {% for i in blog.paginator.page_range %}
+                {% if blog.number == i %}
+            <li class="page-item"><a class="page-link" style="color:#191e23;" href="?blog={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+              {% if blog.has_next %}
+            <li class="page-item">
+              <a class="page-link" style="color:#191e23;" href="?blog={{ blog.next_page_number }}">Next</a>
+            </li>
+              {% endif %}
+              {% endif %}
+          </ul>
+        </nav>
   </div>
 </section>
 

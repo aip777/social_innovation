@@ -104,16 +104,23 @@ class Projects(models.Model):
 
 
 class Blog(models.Model):
-    blog_headline = models.CharField(max_length=300, blank=True)
-    blog_details = models.CharField(max_length=1500, blank=True)
-    blog_images = models.ImageField(upload_to='blog')
-    is_published = models.BooleanField(default=True)
+    blog_headline_one = models.CharField(max_length=500, blank=True)
+    blog_details_one = models.TextField(max_length=2000, blank=True)
+    blog_images = models.ImageField(upload_to='blog', blank=True)
 
+    blog_headline_two = models.CharField(max_length=500, blank=True)
+    blog_details_two = models.TextField(max_length=2000, blank=True)
+    blog_images_two = models.ImageField(upload_to='blog', blank=True)
+    author_name = models.CharField(max_length=100, blank=True)
+    author_comment = models.TextField(max_length=1000, blank=True)
+    author_images = models.ImageField(upload_to='author', blank=True)
+
+    is_published = models.BooleanField(default=True)
     date_time = models.DateTimeField(default=now)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.blog_headline
+        return self.blog_headline_one
     class Meta:
         verbose_name = 'Blog'
         verbose_name_plural = 'Blog'

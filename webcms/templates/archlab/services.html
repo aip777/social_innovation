@@ -34,6 +34,30 @@
                 </div>
                 {% endfor %}
     		</div>
+            <nav aria-label="Page navigation example">
+            {% if services.has_other_pages %}
+          <ul class="pagination justify-content-center">
+              {% if services.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?services={{ services.previous_page_number }}" style="color:#191e23;" tabindex="-1">Previous</a>
+
+            </li>
+              {% endif %}
+              {% for i in services.paginator.page_range %}
+                {% if services.number == i %}
+            <li class="page-item"><a class="page-link" style="color:#191e23;" href="?services={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+              {% if services.has_next %}
+            <li class="page-item">
+              <a class="page-link" style="color:#191e23;" href="?services={{ services.next_page_number }}">Next</a>
+            </li>
+              {% endif %}
+              {% endif %}
+          </ul>
+        </nav>
+
+
     	</div>
     </section>
 

@@ -1,10 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.views.generic import CreateView, TemplateView
 from .models import Home, Process, About , Projects, Blog, Team, Services, ContactUs, Achievement, StaticContent
 from .forms import ContactModel
 from django.views import generic
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
     home_cms = Home.objects.filter(is_published=True)
@@ -15,6 +16,24 @@ def home(request):
     services = Services.objects.filter(is_published=True)
     achieve = Achievement.objects.filter(is_published=True)
 
+    page = request.GET.get('projects', 1)
+    paginator = Paginator(projects, 6)
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+
+
+    page_blog = request.GET.get('blog', 1)
+    paginator = Paginator(blog, 8)
+    try:
+        blog = paginator.page(page_blog)
+    except PageNotAnInteger:
+        blog = paginator.page(1)
+    except EmptyPage:
+        blog = paginator.page(paginator.num_pages)
 
 
     context = {
@@ -32,8 +51,19 @@ def home(request):
 def team(request):
     team = Team.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    page = request.GET.get('team', 1)
+    paginator = Paginator(team, 12)
+    try:
+        users = paginator.page(page)
+    except PageNotAnInteger:
+        users = paginator.page(1)
+    except EmptyPage:
+        users = paginator.page(paginator.num_pages)
+
+
     context = {
-        'team': team,
+        'team': users,
         'static': static
     }
     return render(request, 'archlab/team.html', context)
@@ -50,6 +80,17 @@ def about(request):
 def services(request):
     services = Services.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    page = request.GET.get('services', 1)
+    paginator = Paginator(services, 2)
+    try:
+        services = paginator.page(page)
+    except PageNotAnInteger:
+        services = paginator.page(1)
+    except EmptyPage:
+        services = paginator.page(paginator.num_pages)
+
+
     context = {
         'services': services,
         'static': static
@@ -59,6 +100,16 @@ def services(request):
 def projects(request):
     projects = Projects.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    page = request.GET.get('projects', 1)
+    paginator = Paginator(projects, 6)
+    try:
+        projects = paginator.page(page)
+    except PageNotAnInteger:
+        projects = paginator.page(1)
+    except EmptyPage:
+        projects = paginator.page(paginator.num_pages)
+
     context = {
           'projects': projects,
           'static': static
@@ -78,16 +129,36 @@ class ContactCreateView(CreateView):
     template_name = 'archlab/contact.html'
     success_url = "/"
 
-class PostDetail(generic.DetailView):
-    model = Blog
-    template_name = 'blog-single.html'
-
 def blog(request):
     blog = Blog.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    page = request.GET.get('blog', 1)
+    paginator = Paginator(blog, 8)
+    try:
+        blog = paginator.page(page)
+    except PageNotAnInteger:
+        blog = paginator.page(1)
+    except EmptyPage:
+        blog = paginator.page(paginator.num_pages)
+
+
     context = {
         'blog': blog,
         'static': static
     }
     return render(request, 'archlab/blog.html', context)
+
+def listing(request, listing_id ):
+    listing = get_object_or_404(Blog, pk = listing_id)
+    static = StaticContent.objects.filter(is_published=True)
+
+    context = {
+        'listing':listing,
+        'static': static
+    }
+
+    return render(request, 'archlab/blog-single.html', context)
+
+
 

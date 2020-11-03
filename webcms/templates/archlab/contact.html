@@ -24,11 +24,9 @@
     <div class="row block-9 justify-content-center mb-5">
       <div class="col-md-8 mb-md-5">
         <form action="{% url 'contact' %}" method='POST' class="bg-light p-5 contact-form"> {% csrf_token %}
+
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Your Name">
-            </div>
-            <div class="form-group">
-              <input type="text" name="name" class="form-control" placeholder="Your Email">
+              <input type="text" name="name" class="form-control" placeholder="Your Name">
             </div>
             <div class="form-group">
               <input type="email" name="email" class="form-control" placeholder="Email">
@@ -58,19 +56,19 @@
                 <div class="icon">
                     <span class="fa fa-map"></span>
                 </div>
-                <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                <p><span>Address:</span>Saimon Center, 5th Floor House # 4/A, Road No 22, Gulshan - 1 Dhaka - 1212, Bangladesh.</p>
               </div>
               <div class="col-md-4 text-center border-height py-4">
                 <div class="icon">
                     <span class="fa fa-phone"></span>
                 </div>
-                <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                <p><span>Phone:</span> <a href="tel://1234567920">02-9843076</a></p>
               </div>
               <div class="col-md-4 text-center py-4">
                 <div class="icon">
                     <span class="fa fa-paper-plane"></span>
                 </div>
-                <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@egeneration.co</a></p>
               </div>
             </div>
       </div>

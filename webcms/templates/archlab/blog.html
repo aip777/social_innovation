@@ -29,28 +29,36 @@
                       <div class="meta mb-3">
                       <div><a href="#">{{blog_cms.date_time}}</a></div>
                     </div>
-                      <h3 class="heading"><a href="{% url 'post_detail' post.slug  %}">{{blog_cms.blog_headline}}</a></h3>
+                      <h3 class="heading"><a href="{% url 'listing' blog_cms.id %}">{{blog_cms.blog_headline_one}}</a></h3>
                   </div>
                 </div>
               </div>
 {% endfor %}
         </div>
       </div>
-    <div class="row mt-5">
-      <div class="col text-center">
-        <div class="block-27">
-          <ul>
-            <li><a href="#">&lt;</a></li>
-            <li class="active"><span>1</span></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#">4</a></li>
-            <li><a href="#">5</a></li>
-            <li><a href="#">&gt;</a></li>
-          </ul>
-        </div>
-      </div>
     </div>
+    <nav aria-label="Page navigation example">
+            {% if blog.has_other_pages %}
+          <ul class="pagination justify-content-center">
+              {% if blog.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?blog={{ blog.previous_page_number }}" style="color:#191e23;" tabindex="-1">Previous</a>
+
+            </li>
+              {% endif %}
+              {% for i in blog.paginator.page_range %}
+                {% if blog.number == i %}
+            <li class="page-item"><a class="page-link" style="color:#191e23;" href="?blog={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+              {% if blog.has_next %}
+            <li class="page-item">
+              <a class="page-link" style="color:#191e23;" href="?blog={{ blog.next_page_number }}">Next</a>
+            </li>
+              {% endif %}
+              {% endif %}
+          </ul>
+        </nav>
   </div>
 </section>
 

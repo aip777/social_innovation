@@ -37,7 +37,76 @@
 				</div>
 			</div>
 			{% endfor %}
+
+<!--	<div class="row mt-5">-->
+<!--      <div class="col text-center">-->
+<!--        <div class="block-27">-->
+
+<!--&lt;!&ndash;          <ul>&ndash;&gt;-->
+
+<!--&lt;!&ndash;            <li><a href="#">&lt;</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li class="active"><span>1</span></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="#">2</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="#">3</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="#">4</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="#">5</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;            <li><a href="#">&gt;</a></li>&ndash;&gt;-->
+<!--&lt;!&ndash;          </ul>&ndash;&gt;-->
+
+
+<!--            {% if team.has_other_pages %}-->
+<!--          <ul>-->
+<!--              {% if team.has_previous %}-->
+<!--            <li>-->
+<!--              <a href="?team={{ team.previous_page_number }}" tabindex="-1">&lt;</a>-->
+<!--            </li>-->
+<!--              {% endif %}-->
+<!--              {% for i in team.paginator.page_range %}-->
+<!--                {% if team.number == i %}-->
+<!--            <li><a href="?team={{ i }}">{{ i }}</a></li>-->
+<!--            {% endif %}-->
+<!--            {% endfor %}-->
+<!--              {% if team.has_next %}-->
+<!--            <li>-->
+<!--              <a href="?team={{ team.next_page_number }}">&gt;</a>-->
+<!--            </li>-->
+<!--              {% endif %}-->
+<!--              {% endif %}-->
+<!--          </ul>-->
+
+
+
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
 		</div>
+
+
+
+
+		<nav aria-label="Page navigation example">
+            {% if team.has_other_pages %}
+          <ul class="pagination justify-content-center">
+              {% if team.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?team={{ team.previous_page_number }}" style="color:#191e23;" tabindex="-1">Previous</a>
+
+            </li>
+              {% endif %}
+              {% for i in team.paginator.page_range %}
+                {% if team.number == i %}
+            <li class="page-item"><a class="page-link" style="color:#191e23;" href="?team={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+              {% if team.has_next %}
+            <li class="page-item">
+              <a class="page-link" style="color:#191e23;" href="?team={{ team.next_page_number }}">Next</a>
+            </li>
+              {% endif %}
+              {% endif %}
+          </ul>
+        </nav>
 	</div>
 </section>
 {% endblock %}
