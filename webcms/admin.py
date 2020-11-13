@@ -1,7 +1,24 @@
 from django.contrib import admin
-from .models import Home, Process, About , Projects, Blog, Team, Services, ContactUs, Achievement,StaticContent
+from .models import Home, Process, Footer, About , Projects, Blog, Team, Services, ContactUs, Achievement,StaticContent, Navbar
 # Register your models here.
 
+
+class NavbarAdmin(admin.ModelAdmin):
+    list_display = ('id','home_nav_link', 'about_nav_link', 'community_nav_link','services_nav_link','created_at')
+    list_display_links = ('id','home_nav_link', 'about_nav_link')
+    # list_editable = ['is_published']
+    search_fields = ['home_nav_link', 'about_nav_link']
+    # list_per_page = 10
+
+admin.site.register(Navbar, NavbarAdmin)
+
+
+class FooterAdmin(admin.ModelAdmin):
+    list_display = ('id','community_name', 'nav_title','created_at')
+    list_display_links = ('id','community_name', 'nav_title')
+    search_fields = ['community_name', 'nav_title']
+
+admin.site.register(Footer, FooterAdmin)
 
 
 class HomeAdmin(admin.ModelAdmin):

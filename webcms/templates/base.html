@@ -33,13 +33,15 @@
 
   <div class="collapse navbar-collapse" id="ftco-nav">
 	<ul class="navbar-nav ml-auto">
-	  <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">Home</a></li>
-	  <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
-	  <li class="nav-item"><a href="{% url 'team' %}" class="nav-link">Team</a></li>
-	  <li class="nav-item"><a href="{% url 'services' %}" class="nav-link">Services</a></li>
-	  <li class="nav-item"><a href="{% url 'projects' %}" class="nav-link">Project</a></li>
-	  <li class="nav-item"><a href="{% url 'blog' %}"class="nav-link">Blog</a></li>
-	  <li class="nav-item"><a href="{% url 'contactus' %}" class="nav-link">Contact</a></li>
+        {% for nav in navbar %}
+	  <li class="nav-item active"><a href="{% url 'home' %}" class="nav-link">{{nav.home_nav_link}}</a></li>
+	  <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">{{nav.about_nav_link}}</a></li>
+	  <li class="nav-item"><a href="{% url 'team' %}" class="nav-link">{{nav.community_nav_link}}</a></li>
+	  <li class="nav-item"><a href="{% url 'services' %}" class="nav-link">{{nav.services_nav_link}}</a></li>
+	  <li class="nav-item"><a href="{% url 'projects' %}" class="nav-link">{{nav.projects_nav_link}}</a></li>
+	  <li class="nav-item"><a href="{% url 'blog' %}"class="nav-link">{{nav.blog_nav_link}}</a></li>
+	  <li class="nav-item"><a href="{% url 'contactus' %}" class="nav-link">{{nav.contact_link}}</a></li>
+        {% endfor %}
 	</ul>
   </div>
 </div>
@@ -57,13 +59,16 @@
         <div class="row mb-5">
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">eGen.</h2>
-              <p>World Social Innovation Forum is a global initiative to create a robust international ecosystem with diverse leaders, organizations, and supporters locally and globally combining models of social change and technological innovations.</p>
-              <ul class="ftco-footer-social list-unstyled mt-5">
-                <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+                {% for footer_cms in footer %}
+              <h2 class="ftco-heading-2">{{footer_cms.community_name}}</h2>
+              <p>{{footer_cms.community_about}}</p>
+                <ul class="ftco-footer-social list-unstyled mt-5">
+                <li class="ftco-animate"><a href="{{footer_cms.community_twitter}}"><span class="fa fa-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="{{footer_cms.community_facebook}}"><span class="fa fa-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="{{footer_cms.community_linkedin}}"><span class="fa fa-linkedin"></span></a></li>
+                <li class="ftco-animate"><a href="{{footer_cms.community_instagram}}"><span class="fa fa-instagram"></span></a></li>
               </ul>
+                {% endfor %}
             </div>
           </div>
 
@@ -71,9 +76,14 @@
             <div class="ftco-footer-widget mb-4 ml-md-4">
               <h2 class="ftco-heading-2">About Us</h2>
               <ul class="list-unstyled">
-                <li><a href="{% url 'services' %}"><span class="fa fa-chevron-right mr-2"></span>Services</a></li>
-                <li><a href="{% url 'team' %}"><span class="fa fa-chevron-right mr-2"></span>Meet the team</a></li>
-                <li><a href="{% url 'blog' %}"><span class="fa fa-chevron-right mr-2"></span>Blog</a></li>
+                  {% for footer_cms in footer %}
+                  <li><a href="{% url 'about' %}"><span class="fa fa-chevron-right mr-2"></span>{{footer_cms.about_link}}</a></li>
+                <li><a href="{% url 'projects' %}"><span class="fa fa-chevron-right mr-2"></span>{{footer_cms.project_link}}</a></li>
+                <li><a href="{% url 'services' %}"><span class="fa fa-chevron-right mr-2"></span>{{footer_cms.services_link}}</a></li>
+                <li><a href="{% url 'team' %}"><span class="fa fa-chevron-right mr-2"></span>{{footer_cms.team_link}}</a></li>
+                <li><a href="{% url 'blog' %}"><span class="fa fa-chevron-right mr-2"></span>{{footer_cms.blog_link}}</a></li>
+                <li><a href="{% url 'contactus' %}"><span class="fa fa-chevron-right mr-2"></span>{{footer_cms.contact_link}}</a></li>
+                  {% endfor %}
               </ul>
             </div>
           </div>
@@ -90,14 +100,16 @@
 <!--          </div>-->
           <div class="col-md">
             <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+                {% for footer_cms in footer %}
+            	<h2 class="ftco-heading-2">{{footer_cms.contact_title}}</h2>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li><span class="icon fa fa-map"></span><span class="text">Saimon Center, 5th Floor House # 4/A, Road No 22, Gulshan - 1 Dhaka - 1212, Bangladesh.</span></li>
-	                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">02-9843076</span></a></li>
-	                <li><a href="#"><span class="icon fa fa-envelope pr-4"></span><span class="text">info@egeneration.co</span></a></li>
+	                <li><span class="icon fa fa-map"></span><span class="text">{{footer_cms.contact_address}}</span></li>
+	                <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">{{footer_cms.contact_phone}}</span></a></li>
+	                <li><a href="#"><span class="icon fa fa-envelope pr-4"></span><span class="text">{{footer_cms.contact_email}}</span></a></li>
 	              </ul>
 	            </div>
+                 {% endfor %}
             </div>
           </div>
         </div>

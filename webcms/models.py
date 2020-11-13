@@ -202,3 +202,56 @@ class StaticContent(models.Model):
     class Meta:
         verbose_name = 'Static Content'
         verbose_name_plural = 'Static Content'
+
+
+
+class Navbar(models.Model):
+    home_nav_link = models.CharField(max_length=50, blank=True)
+    about_nav_link = models.CharField(max_length=50, blank=True)
+    community_nav_link = models.CharField(max_length=50, blank=True)
+    services_nav_link = models.CharField(max_length=50, blank=True)
+    projects_nav_link = models.CharField(max_length=50, blank=True)
+    blog_nav_link = models.CharField(max_length=50, blank=True)
+    contact_link = models.CharField(max_length=50, blank=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.home_nav_link
+
+    class Meta:
+        verbose_name = 'Navbar'
+        verbose_name_plural = 'Navbar'
+
+
+class Footer(models.Model):
+    community_name = models.CharField(max_length=100, blank=True)
+    community_about = models.TextField(max_length=2000, blank=True)
+    community_facebook = models.CharField(max_length=500, blank=True)
+    community_twitter = models.CharField(max_length=500, blank=True)
+    community_linkedin = models.CharField(max_length=500, blank=True)
+    community_instagram = models.CharField(max_length=500, blank=True)
+
+
+    nav_title = models.CharField(max_length=100, blank=True)
+    about_link = models.CharField(max_length=50, blank=True)
+    project_link = models.CharField(max_length=50, blank=True)
+    services_link = models.CharField(max_length=50, blank=True)
+    team_link = models.CharField(max_length=50, blank=True)
+    blog_link = models.CharField(max_length=50, blank=True)
+    contact_link = models.CharField(max_length=50, blank=True)
+
+    contact_title = models.CharField(max_length=250, blank=True)
+    contact_address = models.CharField(max_length=500, blank=True)
+    contact_phone = models.CharField(max_length=250, blank=True)
+    contact_email = models.CharField(max_length=250, blank=True)
+
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.community_name
+
+    class Meta:
+        verbose_name = 'Footer'
+        verbose_name_plural = 'Footer'

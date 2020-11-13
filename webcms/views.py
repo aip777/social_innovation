@@ -2,13 +2,15 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 from django.views.generic import CreateView, TemplateView
-from .models import Home, Process, About , Projects, Blog, Team, Services, ContactUs, Achievement, StaticContent
+from .models import Home, Process,Footer, About , Projects, Blog, Team, Services, ContactUs, Achievement, StaticContent, Navbar
 from .forms import ContactModel
 from django.views import generic
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def home(request):
     home_cms = Home.objects.filter(is_published=True)
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
     process = Process.objects.filter(is_published=True)
     about = About.objects.filter(is_published=True)
     projects = Projects.objects.filter(is_published=True)
@@ -43,7 +45,9 @@ def home(request):
         'projects': projects,
         'blog': blog,
         'services': services,
-        'achieve': achieve
+        'achieve': achieve,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/index.html', context)
 
@@ -51,6 +55,9 @@ def home(request):
 def team(request):
     team = Team.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
 
     page = request.GET.get('team', 1)
     paginator = Paginator(team, 12)
@@ -64,22 +71,34 @@ def team(request):
 
     context = {
         'team': users,
-        'static': static
+        'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/team.html', context)
 
 def about(request):
     about = About.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
+
     context = {
         'about': about,
-        'static': static
+        'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/about.html', context)
+
 
 def services(request):
     services = Services.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
 
     page = request.GET.get('services', 1)
     paginator = Paginator(services, 2)
@@ -93,13 +112,18 @@ def services(request):
 
     context = {
         'services': services,
-        'static': static
+        'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/services.html', context)
 
 def projects(request):
     projects = Projects.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
+
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
 
     page = request.GET.get('projects', 1)
     paginator = Paginator(projects, 6)
@@ -112,14 +136,21 @@ def projects(request):
 
     context = {
           'projects': projects,
-          'static': static
+          'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/project.html', context)
 
 def contact_static(request):
     static = StaticContent.objects.filter(is_published=True)
+
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
     context = {
-          'static': static
+          'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/contact.html', context)
 
@@ -133,6 +164,9 @@ def blog(request):
     blog = Blog.objects.filter(is_published=True)
     static = StaticContent.objects.filter(is_published=True)
 
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
+
     page = request.GET.get('blog', 1)
     paginator = Paginator(blog, 8)
     try:
@@ -145,17 +179,22 @@ def blog(request):
 
     context = {
         'blog': blog,
-        'static': static
+        'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
     return render(request, 'archlab/blog.html', context)
 
 def listing(request, listing_id ):
     listing = get_object_or_404(Blog, pk = listing_id)
     static = StaticContent.objects.filter(is_published=True)
-
+    navbar = Navbar.objects.all()
+    footer = Footer.objects.all()
     context = {
         'listing':listing,
-        'static': static
+        'static': static,
+        'navbar': navbar,
+        'footer': footer
     }
 
     return render(request, 'archlab/blog-single.html', context)
