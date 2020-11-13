@@ -6,7 +6,7 @@ from django.utils.timezone import now
 class Home(models.Model):
     logo = models.ImageField(upload_to='logo', blank=True)
     company_name = models.CharField(max_length=50, blank=True)
-    slider_headline = models.CharField(max_length=150, blank=True)
+    slider_headline = models.CharField(max_length=500, blank=True)
     slider_small_headline = models.TextField(max_length=800, blank=True)
     slider_images = models.ImageField(upload_to='slider', blank=True)
     is_published = models.BooleanField(default=True)
@@ -21,20 +21,20 @@ class Home(models.Model):
 
 class Process(models.Model):
     icon_one = models.CharField(max_length=150, blank=True)
-    process_title_one = models.CharField(max_length=150, blank=True)
-    process_details_one = models.TextField(max_length=250, blank=True)
+    process_title_one = models.CharField(max_length=500, blank=True)
+    process_details_one = models.TextField(max_length=1000, blank=True)
 
     icon_two = models.CharField(max_length=150, blank=True)
-    process_title_two = models.CharField(max_length=150, blank=True)
-    process_details_two = models.TextField(max_length=250, blank=True)
+    process_title_two = models.CharField(max_length=500, blank=True)
+    process_details_two = models.TextField(max_length=1000, blank=True)
 
     icon_three = models.CharField(max_length=150, blank=True)
-    process_title_three = models.CharField(max_length=150, blank=True)
-    process_details_three = models.TextField(max_length=250, blank=True)
+    process_title_three = models.CharField(max_length=500, blank=True)
+    process_details_three = models.TextField(max_length=1000, blank=True)
 
     icon_four = models.CharField(max_length=150, blank=True)
-    process_title_four = models.CharField(max_length=150, blank=True)
-    process_details_four = models.TextField(max_length=250, blank=True)
+    process_title_four = models.CharField(max_length=500, blank=True)
+    process_details_four = models.TextField(max_length=1000, blank=True)
 
     is_published = models.BooleanField(default=True)
     date_time = models.DateTimeField(default=now)
@@ -49,8 +49,8 @@ class Process(models.Model):
 
 
 class About(models.Model):
-    about_title = models.CharField(max_length=150, blank=True)
-    about_details = models.TextField(max_length=1000, blank=True)
+    about_title = models.CharField(max_length=500, blank=True)
+    about_details = models.TextField(max_length=2000, blank=True)
     about_images = models.ImageField(upload_to='about', blank=True)
     is_published = models.BooleanField(default=True)
 
@@ -84,12 +84,12 @@ class Projects(models.Model):
         ('col-md-5 img js-fullheight', 'Left'),
         ('col-md-5 order-md-last img js-fullheight', 'Right'),
     )
-    position = models.CharField(max_length=100, choices=TYPE_SELECT)
-    projects_title = models.CharField(max_length=250, blank=True)
-    projects_details = models.CharField(max_length=1000, blank=True)
+    position = models.CharField(max_length=500, choices=TYPE_SELECT)
+    projects_title = models.CharField(max_length=500, blank=True)
+    projects_details = models.TextField(max_length=2000, blank=True)
     projects_images = models.ImageField(upload_to='projects')
     is_published = models.BooleanField(default=True)
-    projects_headline = models.CharField(max_length=150, blank=True)
+    projects_headline = models.CharField(max_length=500, blank=True)
 
 
     date_time = models.DateTimeField(default=now)
@@ -105,14 +105,14 @@ class Projects(models.Model):
 
 class Blog(models.Model):
     blog_headline_one = models.CharField(max_length=500, blank=True)
-    blog_details_one = models.TextField(max_length=2000, blank=True)
+    blog_details_one = models.TextField(max_length=3000, blank=True)
     blog_images = models.ImageField(upload_to='blog', blank=True)
 
-    blog_headline_two = models.CharField(max_length=500, blank=True)
+    blog_headline_two = models.CharField(max_length=1000, blank=True)
     blog_details_two = models.TextField(max_length=2000, blank=True)
     blog_images_two = models.ImageField(upload_to='blog', blank=True)
     author_name = models.CharField(max_length=100, blank=True)
-    author_comment = models.TextField(max_length=1000, blank=True)
+    author_comment = models.TextField(max_length=1500, blank=True)
     author_images = models.ImageField(upload_to='author', blank=True)
 
     is_published = models.BooleanField(default=True)
@@ -148,8 +148,8 @@ class Team(models.Model):
 
 
 class Services(models.Model):
-    services_title = models.CharField(max_length=150, blank=True)
-    services_details = models.TextField(max_length=300, blank=True)
+    services_title = models.CharField(max_length=500, blank=True)
+    services_details = models.TextField(max_length=1000, blank=True)
     icon = models.CharField(max_length=200, blank=True)
 
     is_published = models.BooleanField(default=True)
@@ -206,13 +206,13 @@ class StaticContent(models.Model):
 
 
 class Navbar(models.Model):
-    home_nav_link = models.CharField(max_length=50, blank=True)
-    about_nav_link = models.CharField(max_length=50, blank=True)
-    community_nav_link = models.CharField(max_length=50, blank=True)
-    services_nav_link = models.CharField(max_length=50, blank=True)
-    projects_nav_link = models.CharField(max_length=50, blank=True)
-    blog_nav_link = models.CharField(max_length=50, blank=True)
-    contact_link = models.CharField(max_length=50, blank=True)
+    home_nav_link = models.CharField(max_length=100, blank=True)
+    about_nav_link = models.CharField(max_length=200, blank=True)
+    community_nav_link = models.CharField(max_length=200, blank=True)
+    services_nav_link = models.CharField(max_length=200, blank=True)
+    projects_nav_link = models.CharField(max_length=200, blank=True)
+    blog_nav_link = models.CharField(max_length=200, blank=True)
+    contact_link = models.CharField(max_length=200, blank=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
 

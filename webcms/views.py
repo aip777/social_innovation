@@ -101,7 +101,7 @@ def services(request):
     footer = Footer.objects.all()
 
     page = request.GET.get('services', 1)
-    paginator = Paginator(services, 2)
+    paginator = Paginator(services, 8)
     try:
         services = paginator.page(page)
     except PageNotAnInteger:
