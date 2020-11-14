@@ -10,6 +10,13 @@ class NavbarAdmin(admin.ModelAdmin):
     search_fields = ['home_nav_link', 'about_nav_link']
     # list_per_page = 10
 
+    def has_add_permission(self, request):
+        response = Navbar.objects.all().count()
+        if response == 1:
+            return False
+        else:
+            return True
+
 admin.site.register(Navbar, NavbarAdmin)
 
 
@@ -17,6 +24,13 @@ class FooterAdmin(admin.ModelAdmin):
     list_display = ('id','community_name', 'nav_title','created_at')
     list_display_links = ('id','community_name', 'nav_title')
     search_fields = ['community_name', 'nav_title']
+
+    def has_add_permission(self, request):
+        response = Footer.objects.all().count()
+        if response == 1:
+            return False
+        else:
+            return True
 
 admin.site.register(Footer, FooterAdmin)
 
@@ -26,7 +40,13 @@ class HomeAdmin(admin.ModelAdmin):
     list_display_links = ('id','company_name', 'slider_headline')
     # list_editable = ['is_published']
     search_fields = ['company_name', 'slider_headline']
-    list_per_page = 25
+
+    def has_add_permission(self, request):
+        response = Home.objects.all().count()
+        if response == 1:
+            return False
+        else:
+            return True
 
 admin.site.register(Home, HomeAdmin)
 
@@ -36,7 +56,13 @@ class StaticContentAdmin(admin.ModelAdmin):
     list_display_links = ('about_page_headline', 'about_page_image')
     # list_editable = ('is_published')
     search_fields = ['about_page_headline']
-    list_per_page = 25
+
+    def has_add_permission(self, request):
+        response = StaticContent.objects.all().count()
+        if response == 1:
+            return False
+        else:
+            return True
 
 admin.site.register(StaticContent, StaticContentAdmin)
 
@@ -77,6 +103,12 @@ class ProjectsAdmin(admin.ModelAdmin):
     search_fields = ['position', 'projects_title']
     list_per_page = 25
 
+
+    response = Projects.objects.all().count()
+
+
+
+
 admin.site.register(Projects, ProjectsAdmin)
 
 
@@ -96,7 +128,13 @@ class AboutAdmin(admin.ModelAdmin):
     list_display_links = ('id','about_title')
     # list_editable = ('is_published')
     search_fields = ['about_title']
-    list_per_page = 25
+
+    def has_add_permission(self, request):
+        response = About.objects.all().count()
+        if response == 1:
+            return False
+        else:
+            return True
 
 admin.site.register(About, AboutAdmin)
 
