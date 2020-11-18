@@ -20,19 +20,23 @@ class Home(models.Model):
         verbose_name_plural = 'Home'
 
 class Process(models.Model):
-    icon_one = models.CharField(max_length=150, blank=True)
+    # icon_one = models.CharField(max_length=150, blank=True)
+    icon_image_one = models.ImageField(upload_to='icon', blank=True)
     process_title_one = models.CharField(max_length=500, blank=True)
     process_details_one = models.TextField(max_length=1000, blank=True)
 
-    icon_two = models.CharField(max_length=150, blank=True)
+    # icon_two = models.CharField(max_length=150, blank=True)
+    icon_image_two = models.ImageField(upload_to='icon', blank=True)
     process_title_two = models.CharField(max_length=500, blank=True)
     process_details_two = models.TextField(max_length=1000, blank=True)
 
-    icon_three = models.CharField(max_length=150, blank=True)
+    # icon_three = models.CharField(max_length=150, blank=True)
+    icon_image_three = models.ImageField(upload_to='icon', blank=True)
     process_title_three = models.CharField(max_length=500, blank=True)
     process_details_three = models.TextField(max_length=1000, blank=True)
 
-    icon_four = models.CharField(max_length=150, blank=True)
+    # icon_four = models.CharField(max_length=150, blank=True)
+    icon_image_four = models.ImageField(upload_to='icon', blank=True)
     process_title_four = models.CharField(max_length=500, blank=True)
     process_details_four = models.TextField(max_length=1000, blank=True)
 
@@ -84,10 +88,18 @@ class Projects(models.Model):
         ('col-md-5 img js-fullheight', 'Left'),
         ('col-md-5 order-md-last img js-fullheight', 'Right'),
     )
+
+    TYPE_SELECT_SCROLL = (
+        ('mh-id-1', '1'),
+        ('mh-id-2', '2'),
+        ('mh-id-3', '3'),
+        ('mh-id-4', '4'),
+    )
     position = models.CharField(max_length=500, choices=TYPE_SELECT)
     projects_title = models.CharField(max_length=500, blank=True)
     projects_details = models.TextField(max_length=2000, blank=True)
     projects_images = models.ImageField(upload_to='projects')
+    icon_reference = models.CharField(max_length=500, choices=TYPE_SELECT_SCROLL, blank=True, null=True)
     is_published = models.BooleanField(default=True)
     projects_headline = models.CharField(max_length=500, blank=True)
 

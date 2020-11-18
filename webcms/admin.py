@@ -104,11 +104,6 @@ class ProjectsAdmin(admin.ModelAdmin):
     list_per_page = 25
 
 
-    response = Projects.objects.all().count()
-
-
-
-
 admin.site.register(Projects, ProjectsAdmin)
 
 
@@ -141,11 +136,18 @@ admin.site.register(About, AboutAdmin)
 
 
 class ProcessAdmin(admin.ModelAdmin):
-    list_display = ('process_title_one', 'icon_one','date_time')
-    list_display_links = ('process_title_one', 'icon_one')
+    list_display = ('process_title_one','date_time')
+    list_display_links = ['process_title_one']
     # list_editable = ('is_published')
     search_fields = ['process_title_one']
     list_per_page = 25
+
+    def has_add_permission(self, request):
+        response = Process.objects.all().count()
+        if response == 1:
+            return False
+        else:
+            return True
 
 admin.site.register(Process, ProcessAdmin)
 

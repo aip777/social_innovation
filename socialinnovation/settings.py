@@ -83,6 +83,30 @@ DATABASES = {
 }
 
 # DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#          'NAME':'djangosocial',
+#         'USER':'django',
+#         'PASSWORD':'admin123!@#FF',
+#         'HOST':'localhost',
+#         'PORT':'3325',
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#          'NAME':'djangosocial',
+#         'USER':'wsifso',
+#         'PASSWORD':'admin123!@#FF',
+#         'HOST':'localhost',
+#         'PORT':'3325',
+#     }
+# }
+
+
+
+# DATABASES = {
 #
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql_psycopg2',
